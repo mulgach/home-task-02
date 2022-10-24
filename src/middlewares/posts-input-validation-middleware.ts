@@ -23,7 +23,7 @@ export const shortDescriptionValidation = body('shortDescription').trim().isStri
 
 export const contentValidation = body('content').trim().isString().isLength({min: 1, max: 1000})
 
-export const blogIdValidation = body('blogId').not().isEmpty().trim().isString()
+export const blogIdValidation = body('blogId').trim().isString().isLength({min: 1, max: 14})
 
 
 
