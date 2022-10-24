@@ -15,11 +15,7 @@ export const blogsInputValidationMiddleware = (req: Request, res: Response, next
 export const bloggerNameValidation = body('name').trim().isString()
     .isLength({min: 1, max: 15})
 
-export const youtubeUrlValidation = body('youtubeUrl').trim().isString()
-    .isLength({
-        min: 1,
-        max: 100
-    }).isURL()
+export const youtubeUrlValidation = body('youtubeUrl').isURL()
 
 
 
