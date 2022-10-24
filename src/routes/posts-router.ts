@@ -58,8 +58,8 @@ postsRouter.put('/:id',
     shortDescriptionValidation,
     contentValidation,
     blogIdValidation,
-    checkBloggerIdExist,
     postsInputValidationMiddleware,
+    checkBloggerIdExist,
     async (req: Request, res: Response) => {
         const updatedPost = postsRepository.updatePost(req.params.id, req.body.title,
             req.body.shortDescription, req.body.content)
