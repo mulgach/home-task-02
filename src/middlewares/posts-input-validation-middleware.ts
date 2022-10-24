@@ -25,14 +25,14 @@ export const shortDescriptionValidation = body('shortDescription').trim().isStri
 export const checkBloggerIdExist = body('blogId').custom((value, {req}) => {
     let bloggerID = blogs.find(el => el.id === req.body.blogId)
     if(!bloggerID) {
-       throw new Error
+       return false
     }
        return true
     });
 
 export const contentValidation = body('content').trim().isString().isLength({min: 1, max: 1000})
 
-export const blogIdValidation = body('blogId').trim().isString().isLength({min: 1})
+export const blogIdValidation = body('blogId').trim().isString().isLength({min: 1, max: 14})
 
 
 
