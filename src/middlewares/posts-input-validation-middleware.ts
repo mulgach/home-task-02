@@ -3,8 +3,11 @@ import {body, validationResult, CustomValidator} from "express-validator";
 
 export const postsInputValidationMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
-        res.status(400).json({ errorsMessages: errors.array() });
+        let errorsArray = errors.array()
+        let errorForClient = errorsArray.map(e => ({message: e.msg, field: e.param}))
+        res.status(400).json({ errorsMessages: errorForClient });
     } else {
         next()
     }
