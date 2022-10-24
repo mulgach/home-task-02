@@ -58,6 +58,7 @@ postsRouter.put('/:id',
     shortDescriptionValidation,
     contentValidation,
     blogIdValidation,
+    postsInputValidationMiddleware,
     async (req: Request, res: Response) => {
         const bloggerId = await blogs.find(el => el.id === req.body.blogId)
         if(!bloggerId) {
