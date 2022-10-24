@@ -1,4 +1,4 @@
-import {NextFunction, Request, Response} from "express";
+import e, {NextFunction, Request, Response} from "express";
 import {body, validationResult, CustomValidator} from "express-validator";
 import {blogs} from "../repositories/blogs-repository";
 
@@ -24,16 +24,15 @@ export const shortDescriptionValidation = body('shortDescription').trim().isStri
 
 export const checkBloggerIdExist = body('blogId').custom((value, {req}) => {
     let bloggerID = blogs.find(el => el.id === req.body.blogId)
-    console.log(bloggerID)
     if(!bloggerID) {
-       return false
+       throw new Error
     }
        return true
     });
 
 export const contentValidation = body('content').trim().isString().isLength({min: 1, max: 1000})
 
-export const blogIdValidation = body('blogId').trim().isString().isLength({min: 1, max: 14})
+export const blogIdValidation = body('blogId').trim().isString().isLength({min: 1})
 
 
 
