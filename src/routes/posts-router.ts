@@ -2,7 +2,7 @@ import {Request, Response, Router} from "express";
 import {postsRepository} from "../repositories/posts-repository";
 import {basicAuthMiddleware} from "../middlewares/authorization-middleware";
 import {
-    blogIdValidation,
+    blogIdValidation, checkBloggerIdExist,
     contentValidation,
     postsInputValidationMiddleware,
     postTitleValidation,
@@ -58,20 +58,9 @@ postsRouter.put('/:id',
     shortDescriptionValidation,
     contentValidation,
     blogIdValidation,
+    checkBloggerIdExist,
     postsInputValidationMiddleware,
     async (req: Request, res: Response) => {
-        const bloggerId = await blogs.find(el => el.id === req.body.blogId)
-        if(!bloggerId) {
-            res.status(400).send({
-                errorsMessages: [
-                    {
-                        message: "Can't find blog by this blogId",
-                        field: "blogId"
-                    }
-                ]
-            })
-            return
-        }
         const updatedPost = postsRepository.updatePost(req.params.id, req.body.title,
             req.body.shortDescription, req.body.content)
         if (updatedPost) {
