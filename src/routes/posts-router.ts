@@ -58,10 +58,10 @@ postsRouter.put('/:id',
     shortDescriptionValidation,
     contentValidation,
     blogIdValidation,
-    checkBloggerIdExist,
+   // checkBloggerIdExist,
     postsInputValidationMiddleware,
     async (req: Request, res: Response) => {
-       /* const bloggerId = await blogs.find(el => el.id === req.body.blogId)
+        const bloggerId = await blogs.find(el => el.id === req.body.blogId)
         if(!bloggerId) {
             res.status(400).send({
                 errorsMessages: [
@@ -72,7 +72,7 @@ postsRouter.put('/:id',
                 ]
             })
             return
-        } */
+        }
         const updatedPost = postsRepository.updatePost(req.params.id, req.body.title,
             req.body.shortDescription, req.body.content)
         if (updatedPost) {
