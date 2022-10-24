@@ -26,7 +26,7 @@ export const checkBloggerIdExist = body('blogId').custom((value, {req}) => {
     let bloggerID = blogs.find(el => el.id === req.body.blogId)
     console.log(bloggerID)
     if(!bloggerID) {
-        throw new Error("Not Found BloggerId!")
+       return false
     }
        return true
     });
